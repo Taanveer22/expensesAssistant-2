@@ -11,6 +11,15 @@ const historyTab = document.getElementById("history-tab");
 // console.log(historyTab);
 const assistantTab = document.getElementById("assistant-tab");
 // console.log(assistantTab);
+const expenseHistory = document.getElementById("expense-history");
+// console.log(expenseHistory);
+const expenseForm = document.getElementById("expense-form");
+// console.log(expenseForm);
+const resultSummary = document.getElementById("result-summary");
+// console.log(resultSummary);
+const historyListContainer = document.getElementById("history-list-container");
+// console.log(historyListContainer);
+let count = 0;
 
 // ----------------------------------------------------------
 //  event listener for calculalate expenses button
@@ -35,9 +44,22 @@ calculalateExpensesButton.addEventListener("click", function () {
   const balanceElement = document.getElementById("balance");
   balanceElement.innerText = balance;
 
-  // show results section
-  const resultSection = document.getElementById("result-section");
-  resultSection.classList.remove("hidden");
+  // show result summary
+  resultSummary.classList.remove("hidden");
+
+  // create dynamic ui for history
+  count = count + 1;
+  const historyItemsDiv = document.createElement("div");
+  historyItemsDiv.className =
+    "bg-white p-3 rounded-md border-l-2 border-green-600";
+  historyItemsDiv.innerHTML = `
+        <p class="text-sm text-gray-800">Serial : ${count}</p>
+        <p class="text-xs text-gray-500">${new Date().toLocaleDateString()}</p>
+        <p class="text-xs text-gray-500">Income : ${income}</p>
+        <p class="text-xs text-gray-500">totalExpenses : ${totalExpenses}</p>
+        <p class="text-xs text-gray-500">balance : ${balance}</p>
+                              `;
+  historyListContainer.prepend(historyItemsDiv);
 });
 
 // ----------------------------------------------------------
@@ -75,37 +97,53 @@ calculalateSavingsButton.addEventListener("click", function () {
 
 historyTab.addEventListener("click", function () {
   console.log("histoy tab clicked");
+  // toggle for history tab
   historyTab.classList.add(
     "text-white",
     "font-semibold",
     "bg-gradient-to-r",
-    "from-blue-500",
-    "to-purple-600"
+    "from-green-500",
+    "to-lime-500"
   );
   assistantTab.classList.remove(
     "text-white",
     "font-semibold",
     "bg-gradient-to-r",
-    "from-blue-500",
-    "to-purple-600"
+    "from-green-500",
+    "to-lime-500"
   );
+
+  // show expense history
+  expenseHistory.classList.remove("hidden");
+
+  // show result summary
+
+  // hide expense form
+  expenseForm.classList.add("hidden");
 });
 
 // assistant tab functionality
 assistantTab.addEventListener("click", function () {
   console.log("assistant tab clicked");
+  // toggle for assistant tab
   assistantTab.classList.add(
     "text-white",
     "font-semibold",
     "bg-gradient-to-r",
-    "from-blue-500",
-    "to-purple-600"
+    "from-green-500",
+    "to-lime-500"
   );
   historyTab.classList.remove(
     "text-white",
     "font-semibold",
     "bg-gradient-to-r",
-    "from-blue-500",
-    "to-purple-600"
+    "from-green-500",
+    "to-lime-500"
   );
+
+  // show expense form
+  expenseForm.classList.remove("hidden");
+
+  // hide expense history
+  expenseHistory.classList.add("hidden");
 });
