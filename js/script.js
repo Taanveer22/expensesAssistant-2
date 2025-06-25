@@ -2,7 +2,8 @@ console.log("connected js");
 
 // ---------------------------------
 // global variable declaretion
-// ------------------------------
+// ---------------------------------
+
 const calculalateExpensesButton = document.getElementById("calculate-expenses");
 // console.log(calculalateExpensesButton);
 const calculalateSavingsButton = document.getElementById("calculate-savings");
@@ -20,6 +21,8 @@ const resultSummary = document.getElementById("result-summary");
 const historyListContainer = document.getElementById("history-list-container");
 // console.log(historyListContainer);
 let count = 0;
+// console.log(count);
+
 
 // ----------------------------------------------------------
 //  event listener for calculalate expenses button
@@ -60,11 +63,30 @@ calculalateExpensesButton.addEventListener("click", function () {
         <p class="text-xs text-gray-500">balance : ${balance}</p>
                               `;
   historyListContainer.prepend(historyItemsDiv);
+
+  // input validation
+  if (income <= 0 || isNaN(income)) {
+    document.getElementById("income-error").classList.remove("hidden");
+  }
+
+  if (software <= 0 || isNaN(software)) {
+    document.getElementById("software-error").classList.remove("hidden");
+  }
+
+  if (courses <= 0 || isNaN(courses)) {
+    document.getElementById("courses-error").classList.remove("hidden");
+  }
+
+  if (internet <= 0 || isNaN(internet)) {
+    document.getElementById("internet-error").classList.remove("hidden");
+  }
 });
+
 
 // ----------------------------------------------------------
 // event listener for calculate savings button
 // ----------------------------------------------------------
+
 calculalateSavingsButton.addEventListener("click", function () {
   // console.log('btn clicked');
   const income = parseFloat(document.getElementById("income").value);
@@ -91,9 +113,17 @@ calculalateSavingsButton.addEventListener("click", function () {
 
   const remainingBalanceElement = document.getElementById("remaining-balance");
   remainingBalanceElement.innerText = remainingBalance;
+
+  // input validation
+  if (savingsPercentageInput <= 0 || isNaN(savingsPercentageInput)) {
+    document.getElementById("savings-error").classList.remove("hidden");
+  }
 });
 
+
+// --------------------------------------------
 // history tab functionality
+// --------------------------------------------
 
 historyTab.addEventListener("click", function () {
   console.log("histoy tab clicked");
@@ -122,7 +152,11 @@ historyTab.addEventListener("click", function () {
   expenseForm.classList.add("hidden");
 });
 
+
+// --------------------------------------------
 // assistant tab functionality
+// --------------------------------------------
+
 assistantTab.addEventListener("click", function () {
   console.log("assistant tab clicked");
   // toggle for assistant tab
