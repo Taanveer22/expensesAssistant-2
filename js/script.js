@@ -1,10 +1,16 @@
 console.log("connected js");
 
+// ---------------------------------
 // global variable declaretion
+// ------------------------------
 const calculalateExpensesButton = document.getElementById("calculate-expenses");
 // console.log(calculalateExpensesButton);
 const calculalateSavingsButton = document.getElementById("calculate-savings");
 // console.log(calculalateSavingsButton);
+const historyTab = document.getElementById("history-tab");
+// console.log(historyTab);
+const assistantTab = document.getElementById("assistant-tab");
+// console.log(assistantTab);
 
 // ----------------------------------------------------------
 //  event listener for calculalate expenses button
@@ -63,4 +69,43 @@ calculalateSavingsButton.addEventListener("click", function () {
 
   const remainingBalanceElement = document.getElementById("remaining-balance");
   remainingBalanceElement.innerText = remainingBalance;
+});
+
+// history tab functionality
+
+historyTab.addEventListener("click", function () {
+  console.log("histoy tab clicked");
+  historyTab.classList.add(
+    "text-white",
+    "font-semibold",
+    "bg-gradient-to-r",
+    "from-blue-500",
+    "to-purple-600"
+  );
+  assistantTab.classList.remove(
+    "text-white",
+    "font-semibold",
+    "bg-gradient-to-r",
+    "from-blue-500",
+    "to-purple-600"
+  );
+});
+
+// assistant tab functionality
+assistantTab.addEventListener("click", function () {
+  console.log("assistant tab clicked");
+  assistantTab.classList.add(
+    "text-white",
+    "font-semibold",
+    "bg-gradient-to-r",
+    "from-blue-500",
+    "to-purple-600"
+  );
+  historyTab.classList.remove(
+    "text-white",
+    "font-semibold",
+    "bg-gradient-to-r",
+    "from-blue-500",
+    "to-purple-600"
+  );
 });
